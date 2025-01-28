@@ -38,7 +38,5 @@ class DetailRepository @Inject constructor(
             return@withContext md.digest().joinToString("") { "%02x".format(it) }
         }
     }
-
-
 }
 

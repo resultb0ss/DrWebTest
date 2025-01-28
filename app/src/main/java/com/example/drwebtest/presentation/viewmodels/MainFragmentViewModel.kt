@@ -20,5 +20,4 @@ class MainFragmentViewModel @Inject constructor(
         emit(repository.getInstalledApps())
     }
 
-
 }

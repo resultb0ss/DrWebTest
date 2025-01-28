@@ -34,7 +34,7 @@ class DetailFragmentViewModel @Inject constructor(
             if (intent != null) {
                 context.startActivity(intent)
             } else {
-                myToast("Приложение не установлено")
+                myToast("Приложение не доступно")
             }
         } catch (e: Exception) {
             myToast(e.message.toString())

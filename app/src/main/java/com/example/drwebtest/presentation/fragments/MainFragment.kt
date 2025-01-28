@@ -39,7 +39,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         super.onResume()
         setUpRecyclerView()
         observeInstalledApps()
-
     }
 
     private fun setUpRecyclerView() {
@@ -57,7 +56,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
                 binding.mainFragmentProgressBar.visibility = View.GONE
             }
-
         }
     }
 

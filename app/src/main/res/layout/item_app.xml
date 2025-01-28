@@ -3,8 +3,7 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    xmlns:tools="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,25 +16,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/itemAppNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Название"/>
+                android:text="@string/itemAppNameText"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/itemAppVersionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/itemAppVersionText"
                 android:textSize="10sp"
-                android:text="ver. 1.0"/>
+                card_view:ignore="SmallSp" />
 
         </LinearLayout>
-
 
 
     </androidx.cardview.widget.CardView>

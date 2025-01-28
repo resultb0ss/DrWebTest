@@ -7,12 +7,10 @@ import android.os.Parcelable
 data class InstalledApp(
     val appName: String,
     val appVersion: String,
-    val packageName: String,
-    val appPath: String
+    val packageName: String
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString()
@@ -26,7 +24,6 @@ data class InstalledApp(
         dest.writeString(appName)
         dest.writeString(appVersion)
         dest.writeString(packageName)
-        dest.writeString(appPath)
     }
 
     companion object CREATOR : Parcelable.Creator<InstalledApp> {
@@ -37,7 +34,5 @@ data class InstalledApp(
         override fun newArray(size: Int): Array<out InstalledApp?>? {
             return arrayOfNulls(size)
         }
-
     }
-
 }

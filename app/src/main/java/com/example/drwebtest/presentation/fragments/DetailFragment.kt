@@ -61,7 +61,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private fun loadChecksum() {
         lifecycleScope.launch {
             viewModel.checksum.collect { checkSum ->
-                binding.detailFragmentAppChecksumText.text = "CheckSum: ${checkSum}"
+                binding.detailFragmentAppChecksumText.text = "CheckSum: $checkSum"
             }
         }
     }

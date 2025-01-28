@@ -1,8 +1,6 @@
 package com.example.drwebtest.domain.repositories
 
 import android.app.Application
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.example.drwebtest.domain.models.InstalledApp
 import kotlinx.coroutines.Dispatchers
@@ -22,30 +20,23 @@ class MainRepository @Inject constructor(
             val apps = mutableListOf<InstalledApp>()
             val packageManager = context.packageManager
             val installedPackages =
-                packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+                packageManager.getInstalledPackages(PackageManager.GET_META_DATA)
 
-            installedPackages.forEach {
+            installedPackages.forEach { packageInfo ->
 
-                if (it.flags and ApplicationInfo.FLAG_SYSTEM == 0) {
-                    val appName = packageManager.getApplicationLabel(it).toString()
-                    val packageName = it.packageName
+                val appName =
+                    packageManager.getApplicationLabel(packageInfo.applicationInfo!!).toString()
+                val packageName = packageInfo.packageName
+                val appVersion = packageInfo.versionName
 
-                    val packageInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
-                    val appVersion = packageInfo.versionName
-
-                    val apkPath = it.sourceDir
-                    apps.add(
-                        InstalledApp(
-                            appName,
-                            appVersion.toString(), packageName, apkPath
-                        )
+                apps.add(
+                    InstalledApp(
+                        appName,
+                        appVersion.toString(), packageName
                     )
-
-                }
+                )
             }
             return@withContext apps
-
         }
-
     }
 }

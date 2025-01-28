@@ -17,19 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/mainFragmentMainIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik"
             android:text="@string/mainFragmentTitleText"
-            android:textSize="20sp" />
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

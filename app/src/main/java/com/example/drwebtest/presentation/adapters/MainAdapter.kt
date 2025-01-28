@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.drwebtest.InstalledApp
 import com.example.drwebtest.databinding.ItemAppBinding
+import com.example.drwebtest.domain.models.InstalledApp
 
 class MainAdapter(private val onClick: (InstalledApp) -> Unit) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
@@ -46,7 +46,7 @@ class MainAdapter(private val onClick: (InstalledApp) -> Unit) :
         fun bindView(item: InstalledApp) {
             binding.itemAppNameText.text = item.appName
             binding.itemAppVersionText.text = "ver. ${item.appVersion}"
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onClick(item)
             }
 

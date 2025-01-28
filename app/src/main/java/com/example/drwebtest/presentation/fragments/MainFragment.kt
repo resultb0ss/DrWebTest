@@ -1,19 +1,18 @@
 package com.example.drwebtest.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.drwebtest.InstalledApp
 import com.example.drwebtest.databinding.FragmentMainBinding
+import com.example.drwebtest.domain.models.InstalledApp
 import com.example.drwebtest.presentation.adapters.MainAdapter
 import com.example.drwebtest.presentation.viewmodels.MainFragmentViewModel
 import com.example.drwebtest.presentation.viewmodels.MainViewModelFactory
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -54,12 +53,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun observeInstalledApps() {
-        viewModel.installedAppsList.observe(viewLifecycleOwner) { app ->
-            Log.d("@@@", "app $app")
-            mainAdapter.updateInstalledApps(app)
-        }
-        lifecycleScope.launch(Dispatchers.IO){
-            viewModel.getInstalledApps()
+        lifecycleScope.launch {
+            binding.mainFragmentProgressBar.visibility = View.VISIBLE
+            viewModel.getInstalledApps().collect { apps ->
+                mainAdapter.updateInstalledApps(apps)
+
+                binding.mainFragmentProgressBar.visibility = View.GONE
+            }
+
         }
     }
 

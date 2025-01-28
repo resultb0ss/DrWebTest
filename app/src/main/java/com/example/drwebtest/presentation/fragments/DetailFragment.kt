@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.drwebtest.InstalledApp
 import com.example.drwebtest.databinding.FragmentDetailBinding
+import com.example.drwebtest.domain.models.InstalledApp
+import com.example.drwebtest.domain.repositories.DetailRepository
 import com.example.drwebtest.presentation.viewmodels.DetailFragmentViewModel
 import com.example.drwebtest.presentation.viewmodels.DetailViewModelFactory
+import kotlinx.coroutines.launch
 
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
@@ -21,8 +24,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         super.onCreate(savedInstanceState)
         app = DetailFragmentArgs.Companion.fromBundle(requireArguments()).installedApp
 
-        val factory = DetailViewModelFactory(requireActivity().application)
+        val factory = DetailViewModelFactory(
+            requireActivity().application,
+            DetailRepository(requireActivity().application)
+        )
         viewModel = ViewModelProvider(this, factory)[DetailFragmentViewModel::class.java]
+        viewModel.getChecksum(app.packageName)
     }
 
     override fun inflateBinding(
@@ -35,12 +42,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun onResume() {
         super.onResume()
         initFields()
+        loadChecksum()
     }
 
     @SuppressLint("SetTextI18n")
     private fun initFields() {
         binding.apply {
-            detailFragmentAppChecksumText.text = "CheckSum: ${app.appChecksum}"
             detailFragmentAppVersionText.text = "Version: ${app.appVersion}"
             detailFragmentAppNameText.text = app.appName
             detailFragmentAppPackageNameText.text = "Package: ${app.packageName}"
@@ -54,6 +61,15 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             }
         }
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun loadChecksum() {
+        lifecycleScope.launch {
+            viewModel.checksum.collect { checkSum ->
+                binding.detailFragmentAppChecksumText.text = "CheckSum: ${checkSum}"
+            }
+        }
     }
 
 

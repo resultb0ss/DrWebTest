@@ -66,11 +66,28 @@
             style="@style/detailFragmentTextInfoStyle"
             tools:text="Имя пакета" />
 
-        <TextView
-            android:id="@+id/detailFragmentAppChecksumText"
-            style="@style/detailFragmentTextInfoStyle"
-            tools:text="Контрольная сумма" />
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/detailFragmentAppChecksumText"
+        style="@style/detailFragmentTextInfoStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:text="Контрольная сумма" />
+
+    <ProgressBar
+        android:id="@+id/detailFragmentProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/detailFragmentStartAppButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:visibility="gone"/>
 
 
     <com.google.android.material.button.MaterialButton
@@ -80,7 +97,7 @@
         android:text="@string/detailFragmentMainButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/detailFragmentAppChecksumText"
         app:layout_constraintVertical_bias="0.15" />
 
 

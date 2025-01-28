@@ -5,4 +5,5 @@
     <string name="mainFragmentTitleText">Установленные приложения</string>
     <string name="detailFragmentMainButtonText">Открыть приложение</string>
     <string name="detailFragmentTitleText">О приложении</string>
+    <string name="mainFragmentProgressBarSubtitle">Идет сканирование</string>
 </resources>

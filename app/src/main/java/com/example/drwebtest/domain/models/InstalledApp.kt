@@ -1,4 +1,4 @@
-package com.example.drwebtest
+package com.example.drwebtest.domain.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -8,7 +8,7 @@ data class InstalledApp(
     val appName: String,
     val appVersion: String,
     val packageName: String,
-    val appChecksum: String
+    val appPath: String
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -26,7 +26,7 @@ data class InstalledApp(
         dest.writeString(appName)
         dest.writeString(appVersion)
         dest.writeString(packageName)
-        dest.writeString(appChecksum)
+        dest.writeString(appPath)
     }
 
     companion object CREATOR : Parcelable.Creator<InstalledApp> {

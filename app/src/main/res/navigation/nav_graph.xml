@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="installedApp"
-            app:argType="com.example.drwebtest.InstalledApp" />
+            app:argType="com.example.drwebtest.domain.models.InstalledApp" />
     </fragment>
 </navigation>

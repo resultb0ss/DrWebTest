@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".presentation.fragments.DetailFragment">
 
+    <TextView
+        android:id="@+id/detailFragmentAppNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik"
+        android:textSize="20sp"
+        tools:text="Название" />
+
+    <TextView
+        android:id="@+id/detailFragmentAppVersionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik"
+        android:textSize="20sp"
+        tools:text="Версия" />
+
+    <TextView
+        android:id="@+id/detailFragmentAppPackageNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik"
+        android:textSize="20sp"
+        tools:text="Имя пакета" />
+
+    <TextView
+        android:id="@+id/detailFragmentAppChecksumText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik"
+        android:textSize="20sp"
+        tools:text="Контрольная сумма" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Открыть приложение"/>
 
 
-</FrameLayout>
+</LinearLayout>

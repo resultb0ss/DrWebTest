@@ -1,11 +1,16 @@
 package com.example.drwebtest.presentation
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.drwebtest.R
+import androidx.core.content.ContextCompat
 import com.example.drwebtest.databinding.ActivityMainBinding
+import com.example.drwebtest.utilits.getDefaultAlertDialog
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +20,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val permissionLauncherSingle =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
+
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.QUERY_ALL_PACKAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+
+        } else if (shouldShowRequestPermissionRationale(Manifest.permission.QUERY_ALL_PACKAGES)) {
+            getDefaultAlertDialog { permissionLauncherSingle.launch(Manifest.permission.QUERY_ALL_PACKAGES) }
+        } else {
+            permissionLauncherSingle.launch(Manifest.permission.QUERY_ALL_PACKAGES)
+        }
 
     }
 

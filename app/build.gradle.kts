@@ -6,7 +6,6 @@ plugins {
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version "2.1.0"
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -98,7 +97,6 @@ dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-ktx:1.9.3")
 
-    implementation("com.google.gms:google-services:4.4.2")
 
 
 }

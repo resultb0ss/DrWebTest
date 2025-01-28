@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,20 +12,17 @@ import com.example.drwebtest.databinding.FragmentMainBinding
 import com.example.drwebtest.domain.models.InstalledApp
 import com.example.drwebtest.presentation.adapters.MainAdapter
 import com.example.drwebtest.presentation.viewmodels.MainFragmentViewModel
-import com.example.drwebtest.presentation.viewmodels.MainViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    private lateinit var viewModel: MainFragmentViewModel
+    private val viewModel: MainFragmentViewModel by viewModels()
     private lateinit var mainAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val factory = MainViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[MainFragmentViewModel::class.java]
 
         mainAdapter = MainAdapter { app -> toDetailFragment(app) }
     }

@@ -1,13 +1,20 @@
 package com.example.drwebtest.domain.repositories
 
-import android.content.Context
+import android.app.Application
 import android.content.pm.PackageManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.security.MessageDigest
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DetailRepository(private val context: Context) {
+@Singleton
+class DetailRepository @Inject constructor(
+    application: Application
+) {
+
+    val context = application.applicationContext
 
     suspend fun calculateCheckSum(packageName: String): String {
         val packageManager = context.packageManager

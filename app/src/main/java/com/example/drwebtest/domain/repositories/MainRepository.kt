@@ -1,14 +1,21 @@
 package com.example.drwebtest.domain.repositories
 
-import android.content.Context
+import android.app.Application
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.example.drwebtest.domain.models.InstalledApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainRepository(private val context: Context) {
+@Singleton
+class MainRepository @Inject constructor(
+    application: Application
+) {
+
+    val context = application.applicationContext
 
     suspend fun getInstalledApps(): MutableList<InstalledApp> {
         return withContext(Dispatchers.IO) {

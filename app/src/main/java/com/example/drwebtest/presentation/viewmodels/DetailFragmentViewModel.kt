@@ -7,12 +7,18 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.drwebtest.domain.repositories.DetailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class DetailFragmentViewModel(application: Application, private val repository: DetailRepository) :
+@HiltViewModel
+class DetailFragmentViewModel @Inject constructor(
+    application: Application,
+    private val repository: DetailRepository
+) :
     AndroidViewModel(application) {
 
     @SuppressLint("StaticFieldLeak")

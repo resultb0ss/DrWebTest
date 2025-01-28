@@ -4,31 +4,25 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.drwebtest.databinding.FragmentDetailBinding
 import com.example.drwebtest.domain.models.InstalledApp
-import com.example.drwebtest.domain.repositories.DetailRepository
 import com.example.drwebtest.presentation.viewmodels.DetailFragmentViewModel
-import com.example.drwebtest.presentation.viewmodels.DetailViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     private lateinit var app: InstalledApp
-    private lateinit var viewModel: DetailFragmentViewModel
+    private val viewModel: DetailFragmentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = DetailFragmentArgs.Companion.fromBundle(requireArguments()).installedApp
 
-        val factory = DetailViewModelFactory(
-            requireActivity().application,
-            DetailRepository(requireActivity().application)
-        )
-        viewModel = ViewModelProvider(this, factory)[DetailFragmentViewModel::class.java]
         viewModel.getChecksum(app.packageName)
     }
 

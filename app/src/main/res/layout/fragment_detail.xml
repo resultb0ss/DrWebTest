@@ -1,50 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".presentation.fragments.DetailFragment">
 
-    <TextView
-        android:id="@+id/detailFragmentAppNameText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik"
-        android:textSize="20sp"
-        tools:text="Название" />
+    <ImageView
+        android:id="@+id/detailFragmentBackButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:srcCompat="@drawable/back" />
 
     <TextView
-        android:id="@+id/detailFragmentAppVersionText"
-        android:layout_width="match_parent"
+        android:id="@+id/fragmentCartTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik"
-        android:textSize="20sp"
-        tools:text="Версия" />
+        android:text="@string/detailFragmentTitleText"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/detailFragmentBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toEndOf="@+id/detailFragmentBackButton"
+        app:layout_constraintTop_toTopOf="@+id/detailFragmentBackButton" />
 
-    <TextView
-        android:id="@+id/detailFragmentAppPackageNameText"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik"
-        android:textSize="20sp"
-        tools:text="Имя пакета" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentCartTitle"
+        app:layout_constraintVertical_bias="0.20">
 
-    <TextView
-        android:id="@+id/detailFragmentAppChecksumText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik"
-        android:textSize="20sp"
-        tools:text="Контрольная сумма" />
+        <TextView
+            android:id="@+id/detailFragmentAppNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Название" />
+
+        <TextView
+            android:id="@+id/detailFragmentAppVersionText"
+            style="@style/detailFragmentTextInfoStyle"
+            tools:text="Версия" />
+
+        <TextView
+            android:id="@+id/detailFragmentAppPackageNameText"
+            style="@style/detailFragmentTextInfoStyle"
+            tools:text="Имя пакета" />
+
+        <TextView
+            android:id="@+id/detailFragmentAppChecksumText"
+            style="@style/detailFragmentTextInfoStyle"
+            tools:text="Контрольная сумма" />
+    </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/detailFragmentStartAppButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Открыть приложение"/>
+        android:text="@string/detailFragmentMainButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.15" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

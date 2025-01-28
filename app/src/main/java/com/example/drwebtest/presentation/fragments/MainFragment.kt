@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drwebtest.InstalledApp
@@ -12,6 +13,8 @@ import com.example.drwebtest.databinding.FragmentMainBinding
 import com.example.drwebtest.presentation.adapters.MainAdapter
 import com.example.drwebtest.presentation.viewmodels.MainFragmentViewModel
 import com.example.drwebtest.presentation.viewmodels.MainViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
@@ -55,7 +58,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             Log.d("@@@", "app $app")
             mainAdapter.updateInstalledApps(app)
         }
-        viewModel.getInstalledApps()
+        lifecycleScope.launch(Dispatchers.IO){
+            viewModel.getInstalledApps()
+        }
     }
 
     private fun toDetailFragment(app: InstalledApp) {

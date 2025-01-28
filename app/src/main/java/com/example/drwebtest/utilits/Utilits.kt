@@ -1,7 +1,9 @@
 package com.example.drwebtest.utilits
 
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
 fun AppCompatActivity.getDefaultAlertDialog(function: () -> Unit) {
 

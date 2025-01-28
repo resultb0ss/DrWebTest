@@ -1,11 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
+    kotlin("plugin.serialization") version "2.1.0"
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.drwebtest"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.drwebtest"
@@ -40,12 +46,59 @@ android {
 
 dependencies {
 
+
+    // AndroidX Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    // MVVM
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
+
+    // RecyclerView
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.recyclerview.selection)
+
+    // Hilt
+    implementation(libs.hilt.android.v244)
+    implementation(libs.androidx.activity)
+    ksp(libs.hilt.android.compiler)
+
+
+    // Glide (for images)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+
+    // Parcelize
+    implementation(libs.kotlin.stdlib.jdk7)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Default dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //adding circle image view
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //Paging
+    implementation("androidx.paging:paging-runtime:3.3.5")
+    implementation("androidx.core:core-ktx:1.15.0")
+    implementation("androidx.activity:activity-ktx:1.9.3")
+
+    implementation("com.google.gms:google-services:4.4.2")
+
+
 }
